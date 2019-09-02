@@ -1,2 +1,2 @@
 # Chat-server
-CNET lab project
+CNET lab project (using socket programming)
