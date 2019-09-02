@@ -1,5 +1,5 @@
 void send_to_all(int other_sockets , int client_socket , int server_socket , int nbytes_recvd , char * buffer , fd_set * master){
-	if(FD_ISSET(other-sockets , master)){
+	if(FD_ISSET(other_sockets , master)){
 		if(other_sockets != server_socket && other_sockets != client_socket) {
 			if(send(other_sockets , buffer , nbytes_recvd , 0) == -1){
 				printf("Message sending error to socket %d\n" , other_sockets);
