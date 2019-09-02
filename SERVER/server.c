@@ -21,7 +21,7 @@ int main(){
 	server_address.sin_family = AF_INET;
 	server_address.sin_port = htons(PORT);
 	server_address.sin_addr.s_addr = INADDR_ANY;
-	bzero(&client.sin_zero,0);
+	bzero(&server_address.sin_zero,0);
 
 	//binding the server socket to server address and port
 	if(bind(server_socket , (struct sockaddr *) &server_address , sizeof(server_address)) == -1){
@@ -42,7 +42,7 @@ int main(){
 	tm = *localtime(&TIME);
 	
 	fprintf(log_file , "%d/%d/%d %d:%d:%d :: ", tm.tm_mday, tm.tm_mon + 1 , tm.tm_year + 1900 , tm.tm_hour , tm.tm_min , tm.tm_sec);
-	fprintf(log_file , "---- SERVER STARTED ----\n")
+	fprintf(log_file , "---- SERVER STARTED ----\n");
 
 	//server socket created
 	//server address declared
@@ -75,7 +75,7 @@ int main(){
 	fdmax = server_socket;
 
 	//running the server indefinitely
-	while(true){
+	while(1){
 		read_fds = master;//creating a copy of master set as select is destructive
 		if(select(fdmax + 1 , &read_fds , NULL , NULL , NULL) == -1){
 			printf("Server select error... Closing the server...\n");
@@ -102,13 +102,13 @@ int main(){
 						if(client_socket > fdmax){
 							fdmax = client_socket;
 						}
-						printf("New connection from %s on port %d \n", inet_ntoa(client_addr->sin_addr) , ntohs(client_addr->sin_port));
+						printf("New connection from %s on port %d \n", inet_ntoa(client_address.sin_addr) , ntohs(client_address.sin_port));
 						//logging to log file
 						TIME = time(NULL);
 						tm = *localtime(&TIME);
 	
 						fprintf(log_file , "%d/%d/%d %d:%d:%d :: ", tm.tm_mday, tm.tm_mon + 1 , tm.tm_year + 1900 , tm.tm_hour , tm.tm_min , tm.tm_sec);
-						fprintf(log_file , "New connection from %s on port %d \n", inet_ntoa(client_addr->sin_addr) , ntohs(client_addr->sin_port));
+						fprintf(log_file , "New connection from %s on port %d \n", inet_ntoa(client_address.sin_addr) , ntohs(client_address.sin_port));
 
 						//sending welcome string to the client
 						char welcomeMsg[1024] = "Welcome to the BTECH CSE Chat Server!\r\n";
@@ -124,7 +124,7 @@ int main(){
 					//put(2) - to upload file to server - option 2
 					//msg(3) - to send a message to server and thus the clients - option 3
 					//quit(4) - close the server
-					client_socket = sock;
+					client_socket = socks;
 
 					nbytes_recvd = recv(client_socket , &option , sizeof(option) , 0);
 					
@@ -136,10 +136,10 @@ int main(){
 							printf("User : %s (socket %d) disconnected from the server.\n", username , client_socket);
 						}
 						else if(nbytes_recvd < 0){
-							printf("Recieving error from client...\nClosing connection...\nUser : %s (socket %d) disconnected from the server.\n" , username , client_socket)
+							printf("Recieving error from client...\nClosing connection...\nUser : %s (socket %d) disconnected from the server.\n" , username , client_socket);
 						}
 						close(client_socket);//closing client socket
-						FD_CLR(client_socket, master);//removing client_socket from the master set
+						FD_CLR(client_socket, &master);//removing client_socket from the master set
 
 						//logging to log file at server side
 						TIME = time(NULL);
@@ -173,7 +173,7 @@ int main(){
 							//get the filename
 							char filename[100];
 							recv(client_socket , filename , sizeof(filename) , 0);
-							getFile(filename[] , client_socket , username);
+							getFile(filename , client_socket , username);
 						}
 						else if(option == 3){
 							//RECIEVE MSG FROM THE CIIENT AND BROADCAST TO THE OTHERS
