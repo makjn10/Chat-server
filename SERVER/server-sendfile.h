@@ -14,7 +14,7 @@ void sendFile(char filename[] , int client_socket , char username[]){
 		printf("Transfering file : \"%s\" to User : %s ...\n" , filename , username);
 		option = 1; //start transferring
 	
-		while(fgets(buffer , 1024 , ptr) != EOF){
+		while(fgets(buffer , 1024 , ptr) != NULL){
 			send(client_socket , &option , sizeof(option) , 0);
 			send(client_socket , buffer , sizeof(buffer) , 0);
 		}
@@ -32,7 +32,7 @@ void sendFile(char filename[] , int client_socket , char username[]){
 	time_t TIME = time(NULL);
 	struct tm tm = *localtime(&TIME);
 
-	frintf(log_file , "%d/%d/%d %d:%d:%d :: ", tm.tm_mday, tm.tm_mon + 1 , tm.tm_year + 1900 , tm.tm_hour , tm.tm_min , tm.tm_sec);
+	fprintf(log_file , "%d/%d/%d %d:%d:%d :: ", tm.tm_mday, tm.tm_mon + 1 , tm.tm_year + 1900 , tm.tm_hour , tm.tm_min , tm.tm_sec);
 	if(option == 0){
 		fprintf(log_file , "User served : %s\n   Downloaded file : \"%s\"\n" , username , filename);
 	}
