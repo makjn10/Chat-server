@@ -8,6 +8,7 @@
 #include <errno.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <netdb.h>
 
 #include <string.h>
 #include <time.h>
