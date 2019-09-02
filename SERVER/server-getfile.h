@@ -1,14 +1,14 @@
-void Tranfer(int client_socket , char username[] , char filename[] , FILE * file){
+void TransferFile(int client_socket , char username[] , char filename[] , FILE * file){
 	char buffer[1024]; //buffer for transferring
 	int option = -1; // used as a flag for tranfer
 
 	//TRANSFER START
 	printf("Transferring file : \"%s\" from User : %s ...\n" , filename , username);
-	recv(client_socket , &option , size(option) , 0);
+	recv(client_socket , &option , sizeof(option) , 0);
 	while(option == 1){
 		recv(client_socket , buffer , sizeof(buffer) , 0);
 		fprintf(file , "%s" , buffer);
-		recv(client_socket , &option , size(option) , 0);
+		recv(client_socket , &option , sizeof(option) , 0);
 	}
 	printf("Transfer completed successfully\n");
 	//TRANSFER COMPLETE
@@ -53,7 +53,7 @@ void getFile(char filename[] , int client_socket , char username[]){
 			printf("Overwriting the file : %s ...\n" , filename);
 
 			//calling transfer
-			Transfer(client_socket , username , filename , ptr);
+			TransferFile(client_socket , username , filename , ptr);
 			
 			//time oprations for log file
 			TIME = time(NULL);
@@ -94,7 +94,7 @@ void getFile(char filename[] , int client_socket , char username[]){
 		ptr = fopen(filename , "w");
 
 		//calling transfer
-		Transfer(client_socket , username , filename , ptr);
+		TransferFile(client_socket , username , filename , ptr);
 			
 		//time oprations for log file
 		TIME = time(NULL);
