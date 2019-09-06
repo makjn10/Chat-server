@@ -54,25 +54,24 @@ Every client is provided with 4 + 1* options options :
 2. "2" : Upload file to server - **sendFile()** function in **client-sendFile.h** is called
 3. "3" : Send message to other connected clients - **send_recv_msg()** function in **client-message.h** is called
 4. "0" : Disconnect from server - client socket is closed using **close()** function at server side and then **exit()** at client side.
-
-5.* "4" : Close the server - **(ONLY FOR A ADMIN CLIENT)** - An ADMIN client can use option "4" to close the server. For doing so ADMIN client is prompted for a password if his username is stored as a ADMIN client username. If the password matches with the password stored at server then all the connected clients to server are disconnected with a message and the server is closed. 
+5. ** "4" : Close the server - **(ONLY FOR A ADMIN CLIENT)** - An ADMIN client can use option "4" to close the server. For doing so ADMIN client is prompted for a password if his username is stored as a ADMIN client username. If the password matches with the password stored at server then all the connected clients to server are disconnected with a message and the server is closed. 
 
 The specifications of options available are:-
-#### "1". Download file
+#### * "1". Download file
    The user is asked to input the name of the file to be downloaded from the server. If the file exists at the server the file is transferred otherwise an no transfer takes place and 'No File Present' error is displayed.
    
-#### "2". Upload file
+#### * "2". Upload file
    The user is asked to input the name of the file which is to be uploaded to the server. If the file does not exist at client location, the request is terminated by an error message else if :  
    * A file is already present at server with same name : Client is given two options :  
      * "0" Owerwrite the file present at server
      * "1 / any other number" Abort the upload
    * No such file exists at server : File is uploaded to the server.
    
-#### "3". Send message
+#### * "3". Send message
    The user is asked to input message. The message is sent to all the remaining connected clients(a type of broadcast).
    
-#### "0". Disconnect from the server
+#### * "0". Disconnect from the server
    The user is disconnected from the server and the user leaves the chat server.
    
-#### "4". Close the server
+#### * "4". Close the server
    Only an administrator which has the correct username and password can close the server for all users. To close the server for all users, server first authenticates the username. If the username matches it asks for a password. If the password is correct server gets closed for all the users otherwise an error message is displayed stating incorrect username/password.
