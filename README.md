@@ -34,7 +34,10 @@ Also a client can :
 2. Close the server (if the client is the ADMIN CLINET)
 
 ![Image showing functionalities provided at the client side by server](Images/IMG1.png)
-
+  _Image showing functionalities provided at the client side by server_
+  
+  
+  
 _server_log.txt keeps track of all the activities like connecting a new user,uploading file etc._
 
 
