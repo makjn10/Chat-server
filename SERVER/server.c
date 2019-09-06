@@ -218,6 +218,12 @@ int main(){
 								//SERVER CLOSE BY ADMIN
 								access = 1;
 								send(client_socket , &access , sizeof(access) , 0);
+
+								char close_buff[1024] = "\\\\exit";
+								for(int other_sockets = 0; other_sockets <= fdmax; other_sockets++){
+									send_to_all(other_sockets , client_socket , server_socket, sizeof(close_buff) , close_buff , &master);
+								}
+								printf("-> All connected users disconnected.\n\n");
 								server_status = -1;
 								break;	
 							}
@@ -240,7 +246,7 @@ int main(){
 		fprintf(log_file , "########## SERVER CLOSED ##########\n\n\n");
 	}
 	else{
-		fprintf(log_file , "########## SERVER CLOSED ##########\n\n\n");
+		fprintf(log_file , "########## SERVER CLOSED ########## (due to error)\n\n\n");
 	}
 	printf("-> Served Closed\n\n");
 	fclose(log_file);
