@@ -58,8 +58,8 @@ The specifications of options available are:-
 ### 3.Send message
    The user is asked to input message .The message is sent to all the remaining connected clients.
    
-### 4.Disconnect from the server
+### 0.Disconnect from the server
    The user is disconnected from the server and the user leaves the chat server
    
-### 5.Close the server
+### 4.Close the server
    Only an administrator which has the correct username and password can close the server for all users.To close the server     for all users, server first authenticates the username.If the username matches it asks for a password.If the password is       correct server gets closed for all the users otherwise an error message is displayed stating incorrect password.
