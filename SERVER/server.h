@@ -1,4 +1,3 @@
-//files to be included
 #include <stdio.h>
 #include <stdlib.h>
 
