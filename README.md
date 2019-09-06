@@ -44,7 +44,7 @@ Every user is provided with five options :
 4: Disconnect from server
 5: Close the server
 
-![client](https://www.pastepic.xyz/image/username.R1LrE)
+![client](https://imgur.com/6MwhvCZ)
 
 The specifications of options available are:-
 ### 1.Download file
