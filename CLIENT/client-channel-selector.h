@@ -13,6 +13,8 @@ void send_recv(int client_socket , int sock , char UNAME[]){
 	char filename[100]; //filename for download and upload operations
 	send(client_socket , username , sizeof(username) , 0);
 
+	int password;
+
 	if(option[0] == '1'){
 		//DOWNLOAD A FILE FROM SERVER
 		printf("    Enter file name : ");
@@ -40,14 +42,44 @@ void send_recv(int client_socket , int sock , char UNAME[]){
 	}
 
 	else if(option[0] == '4'){
-		printf("    SERVER CLOSED\n\n");
-		exit(0);
+		int access = 0 , askpass = 0 , pass;
+		recv(client_socket , &askpass , sizeof(askpass) , 0);
+		if(askpass == 1){
+			//ASKING FOR PASSWORD
+			printf("    Enter password : ");
+			fflush(stdout);
+			scanf("%d" , &pass);
+			while ((getchar()) != '\n'); //clearing buffer
+
+			send(client_socket , &pass , sizeof(pass) , 0);
+			recv(client_socket , &access , sizeof(access) , 0);
+
+			if(access == 0){
+				//ACCESS DENIED
+				printf("    Invalid password. Access Denied.\n");
+				return;
+			}
+			else{
+				//ACCESS GRANTED
+				printf("    SERVER CLOSED\n\n");
+				exit(0);
+			}
+
+		}
+		else{
+			//NOT AN ADMIN USER
+			printf("    You are not an admin user...\n    Please contact the admin for this operation.\n");
+			return;
+		}
 	}
 
-	else{
+	else if(option[0] == '0'){
 		printf("    Disconnected from the server!...Exiting...\n\n");
 		close(client_socket);
 		exit(0);
+	}
+	else{
+		printf("    Invalid option... Please see options carefully and enter.\n");
 	}
 	return;
 }
