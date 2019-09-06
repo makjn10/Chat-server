@@ -26,6 +26,7 @@ The specifications of options available are:-
    
 ### 4.Exit the chat box
    The user is disconnected from the server.
+   
 
 _server_log.txt keeps track of all the activities like connecting a new user,uploading file etc._
 
