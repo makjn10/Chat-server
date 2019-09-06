@@ -1,2 +1,4 @@
-# Chat-server
-CNET lab project (using socket programming)
+## Computer Networks lab (CSC15206 : 2019:20) project
+# Chat-server (using socket programming)
+
+
