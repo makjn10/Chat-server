@@ -13,6 +13,11 @@ void send_recv_msg(int client_socket , int i){
 	else{
 		nbyte_recvd = recv(client_socket , message , sizeof(message) , 0);
 		//message[nbyte_recvd] = '\0';
+
+		if(message[0] == '\\' && message[1] == '\\'){
+			printf("Server closed by the Admin... Exiting...\n\n");
+			exit(0);
+		}
 		printf("NEW MESSAGE from %s\n" , message);
 		fflush(stdout);
 	}
