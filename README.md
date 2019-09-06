@@ -7,8 +7,9 @@ In a multi-client chat server, N clients are connected to a server and send mess
 ![Client Server Interaction](http://vidyakv.files.wordpress.com/2011/12/cs-120-3-3341.png)
 
 ## SERVER
-* In the server program, first is the establishment of connection to a port.Server takes incoming connections and ask for a username from every connection.
-* Server listens for incoming connections as well as keep reading from the connections it already have. 
+Working :
+* In the server program, first is the establishment of connection to a port(socket creation and binding). 
+* Server listens for incoming connections as well as keep reading from the connections it already have connected to. Server accepts incoming connections , sends a welcome message to the client and ask for option(what client wants to actually do) and username from every connection.
 * **select()** function gives the power to monitor several sockets at the same time. It tells which ones are ready for reading, which are ready for writing, and which sockets have raised exceptions.
 ```C
 int select(int numfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
@@ -22,14 +23,17 @@ For example, if there is some data to be read on one of the sockets select will 
   
 * After ‘select’, it run through the existing connections looking for data to read. If we got one, new connections are handled and the new file descriptor is added to the master set by keeping track of the maximum file descriptor. If there is no need to handle new connection, handle data from a client. 
 
-The server gives 5 options to its users:
-* Download file
-* Upload file
-* Send message
-* Disconnect from server
-* Close the server
+Functionalities provided : 
+The server provides 3 functionalities to its users :
+1. Download file from the server
+2. Upload file to the server
+3. Send message to other connected clients to the server
 
-![server](https://user-images.githubusercontent.com/37210366/64456211-4f7ec980-d10d-11e9-835d-2936bf5e607c.png)
+Also a client can : 
+1. Disconnect from server
+2. Close the server (if the client is the ADMIN CLINET)
+
+![Image showing functionalities provided at the client side by server](file:///home/mayank/Pictures/Screenshot%20from%202019-09-07%2003-26-02.png)
 
 _server_log.txt keeps track of all the activities like connecting a new user,uploading file etc._
 
