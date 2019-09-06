@@ -31,7 +31,7 @@ The server provides 3 functionalities to its users :
 
 Also a client can : 
 1. Disconnect from server - Connection of client with the server is terminated using **close()**.
-2. Close the server (if the client is the ADMIN CLINET) - All the connected clients to the server are disconnected first and then the server is closed using **close()** function and he **exit()**.
+2. Close the server **(if the client is the ADMIN CLINET)** - All the connected clients to the server are disconnected first and then the server is closed using **close()** function and he **exit()**.
 
 ![Image showing functionalities provided at the client side by server](Images/IMG1.png)  
   _Image showing functionalities provided at the client side by server_  
@@ -73,5 +73,31 @@ The specifications of options available are:-
 #### * "0". Disconnect from the server
    The user is disconnected from the server and the user leaves the chat server.
    
-#### * "4". Close the server
+#### * "4". Close the server (Only for ADMIN client)
    Only an administrator which has the correct username and password can close the server for all users. To close the server for all users, server first authenticates the username. If the username matches it asks for a password. If the password is correct server gets closed for all the users otherwise an error message is displayed stating incorrect username/password.
+   
+## Project running :
+**Requirements** : a compiler to compile a **C** program. Eg. GCC compiler.  
+  
+**Running** :    
+* Download the project. In a terminal **first** navigate to **"SERVER"** directory and compile the **"server.c"** program using the command :  
+```C
+gcc server.c
+```
+* Now run the executable :
+```C
+./a.out
+```
+**NOTE:** The server needs to be started first before the clients.
+
+* Now open other terminals and navigate to **"CLIENTS"** directory and compile the **"client.c"** program usinf the command :  
+```C
+gcc client.c
+```
+* Now run the executable :
+```C
+./a.out
+```
+* Now do as prompted.  
+
+**This is a simple chat - server program.**
