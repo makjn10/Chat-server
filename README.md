@@ -36,7 +36,7 @@ _server_log.txt keeps track of all the activities like connecting a new user,upl
 
 
 ## CLIENT
-
+In the client program, first is the establishment of connection to the server and running on the localhost. Connection is established by using connect(). Then select() is used for either reading or writing as in the server program. It sends message to the server from the keyboard input using stdin. If there is data in the recv_buf, it receives data using recv().
 Once the connection of socket is established with the server,the user is asked to input a username.
 
 Every user is provided with five options :
