@@ -44,7 +44,7 @@ Every user is provided with five options :
 4: Disconnect from server
 5: Close the server
 
-
+![client](https://www.pastepic.xyz/image/username.R1LrE)
 
 The specifications of options available are:-
 ### 1.Download file
@@ -56,7 +56,7 @@ The specifications of options available are:-
 ### 3.Send message
    The user is asked to input message .The message is sent to all the remaining connected clients.
    
-### 4.isconnect from the server
+### 4.Disconnect from the server
    The user is disconnected from the server and the user leaves the chat server
    
 ### 5.Close the server
