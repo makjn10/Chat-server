@@ -44,7 +44,7 @@ Every user is provided with five options :
 4: Disconnect from server
 5: Close the server
 
-![client](https://imgur.com/6MwhvCZ)
+![client](https://user-images.githubusercontent.com/37210366/64455790-29a4f500-d10c-11e9-818c-37a9d2b22999.png)
 
 The specifications of options available are:-
 ### 1.Download file
