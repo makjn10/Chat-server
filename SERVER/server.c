@@ -192,8 +192,35 @@ int main(){
 						}
 						else if(option[0] == '4'){
 							//CLOSE THE SERVER
-							server_status = -1;
-							break;
+							int askpass = 0;//tell client to enter password
+							int access = 0;//to grant access or not
+							int pass;//password given by client
+							int password = 1515; //password for closing the server
+							char admin[] = "ADMINuser";
+							if(strcmp(admin , username) != 0){
+								//NOT A ADMIN USER
+								send(client_socket , &askpass , sizeof(askpass) , 0);
+								continue;
+							}
+							else{
+								//GIVE PASSWORD
+								askpass = 1;
+								send(client_socket , &askpass , sizeof(askpass) , 0);
+								recv(client_socket , &pass , sizeof(pass) , 0);
+							}
+							
+							if(pass != password){
+								//ACCESS DENIED
+								send(client_socket , &access , sizeof(access) , 0);
+								continue;
+							}
+							else{
+								//SERVER CLOSE BY ADMIN
+								access = 1;
+								send(client_socket , &access , sizeof(access) , 0);
+								server_status = -1;
+								break;	
+							}
 						}
 					}					
 				}
