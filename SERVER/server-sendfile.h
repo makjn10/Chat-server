@@ -7,11 +7,13 @@ void sendFile(char filename[] , int client_socket , char username[]){
 	if(ptr == NULL){
 		//FILE NOT PRESENT / FAILED TO OPEN
 		send(client_socket , &option , sizeof(option) , 0);
-		printf("Transfer failed as n such file present\n");
+		printf("-> Transfer failed as no such file present\n");
+		fflush(stdout);
 	}
 	else{
 		//TRANSFER
-		printf("Transfering file : \"%s\" to User : %s ...\n" , filename , username);
+		printf("-> Transfering file : \"%s\" to User : \"%s\" ...\n" , filename , username);
+		fflush(stdout);
 		option = 1; //start transferring
 	
 		while(fgets(buffer , 1024 , ptr) != NULL){
@@ -21,12 +23,14 @@ void sendFile(char filename[] , int client_socket , char username[]){
 	
 		option = 0; //transfer complete
 		send(client_socket , &option , sizeof(option) , 0);
-		printf("Transfer completed successfully\n");
+		printf("-> Transfer completed successfully\n");
+		fflush(stdout);
 		fclose(ptr);
 	}
 	
 	//adding log to log file
-	printf("Logging operation...\n");
+	printf("-> Logging operation...\n");
+	fflush(stdout);
 	FILE * log_file = fopen("server_log.txt" , "a");
 	//adding time stamp to log file
 	time_t TIME = time(NULL);
@@ -34,12 +38,13 @@ void sendFile(char filename[] , int client_socket , char username[]){
 
 	fprintf(log_file , "%d/%d/%d %d:%d:%d :: ", tm.tm_mday, tm.tm_mon + 1 , tm.tm_year + 1900 , tm.tm_hour , tm.tm_min , tm.tm_sec);
 	if(option == 0){
-		fprintf(log_file , "User served : %s\n   Downloaded file : \"%s\"\n" , username , filename);
+		fprintf(log_file , "User served : \"%s\"\n                    Downloaded file : \"%s\"\n\n" , username , filename);
 	}
 	else{
-		fprintf(log_file , "User served : %s\n   Download failed for file : \"%s\" as no such file present / file failed to open.\n" , username , filename);
+		fprintf(log_file , "User served : \"%s\"\n                    Download failed for file : \"%s\" as no such file present / file failed to open.\n\n" , username , filename);
 	}
-	printf("Logged successfully\n");
+	printf("-> Logged successfully\n\n");
+	fflush(stdout);
 	fclose(log_file);
 	return;
 }
