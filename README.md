@@ -30,6 +30,8 @@ The server gives 5 options to its users:
 * Disconnect from server
 * Close the server
 
+![server](https://user-images.githubusercontent.com/37210366/64456211-4f7ec980-d10d-11e9-835d-2936bf5e607c.png)
+
 _server_log.txt keeps track of all the activities like connecting a new user,uploading file etc._
 
 
