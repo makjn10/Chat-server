@@ -24,6 +24,7 @@ int main(){
 	fgets(username , 100 , stdin);
 	username[strlen(username) - 1] = '\0';//setting last char as end
 
+
 	//connecting to server
 	if(connect(client_socket , (struct sockaddr *) &server_address , sizeof(struct sockaddr)) == -1){
 		printf("> Connecting error...Exiting...\n");
@@ -43,7 +44,7 @@ int main(){
 	FD_SET(client_socket , &master);
 
 	//telling instructions
-	printf("> INSTRUCTIONS : \nOptions :\n  * (1 : Download file)\n  * (2 : Upload file)\n  * (3 : Send message)\n  * (0 : Disconnnect)\n");
+	printf("> INSTRUCTIONS : \nOptions :\n  * (1 : Download file)\n  * (2 : Upload file)\n  * (3 : Send message)\n  * (0 : Disconnnect)\n  * [4 : Close the server **(only for admin)]");
 	printf("\n> Enter the option and then the required fields. \n\n> ");
 	fflush(stdout);
 
