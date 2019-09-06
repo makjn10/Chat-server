@@ -2,7 +2,6 @@
 
 #define PORT 8005
 
-
 int main(){
 	//creating client socket
 	int client_socket = socket(AF_INET , SOCK_STREAM , 0);
