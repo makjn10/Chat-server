@@ -14,16 +14,16 @@ Every user is provided with four options :
 4: Exit the chat box
 
 The specifications of options available are:-
-#1.Download file
+# 1.Download file
    The user is asked to input the name of the file.If the file exists with server the file is downloaded by the user otherwise    an error message is shown.
    
-#2.Upload file
+# 2.Upload file
    The user is asked to input the name of the file which is to be uploaded.If the file does not exist with server,the file is      uploaded to the server.If the file already exists with the same name ,an option comes to overwrite the existing file with      the same name or abort the upload file process.
    
-#3.Send message
+# 3.Send message
    The user is asked to input message .The message is sent to all the remaining connected clients.
    
-#4.Exit the chat box
+# 4.Exit the chat box
    The user is disconnected from the server.
 
 _server_log.txt keeps track of all the activities like connecting a new user,uploading file etc._
