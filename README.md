@@ -7,7 +7,7 @@ In a multi-client chat server, N clients are connected to a server and send mess
 ![Client Server Interaction](http://vidyakv.files.wordpress.com/2011/12/cs-120-3-3341.png)
 
 ## SERVER
-Working :
+### Working :
 * In the server program, first is the establishment of connection to a port(socket creation and binding). 
 * Server listens for incoming connections as well as keep reading from the connections it already have connected to. Server accepts incoming connections , sends a welcome message to the client and ask for option(what client wants to actually do) and username from every connection.
 * **select()** function gives the power to monitor several sockets at the same time. It tells which ones are ready for reading, which are ready for writing, and which sockets have raised exceptions.
@@ -23,8 +23,8 @@ For example, if there is some data to be read on one of the sockets select will 
   
 * After ‘select’, it run through the existing connections looking for data to read. If we got one, new connections are handled and the new file descriptor is added to the master set by keeping track of the maximum file descriptor. If there is no need to handle new connection, handle data from a client. 
 
-Functionalities provided : 
-The server provides 3 functionalities to its users :
+### Functionalities provided :   
+The server provides 3 functionalities to its users :  
 1. Download file from the server
 2. Upload file to the server
 3. Send message to other connected clients to the server
@@ -33,8 +33,9 @@ Also a client can :
 1. Disconnect from server
 2. Close the server (if the client is the ADMIN CLINET)
 
-![Image showing functionalities provided at the client side by server](Images/IMG1.png)
-  _Image showing functionalities provided at the client side by server_
+![Image showing functionalities provided at the client side by server](Images/IMG1.png)  
+  _Image showing functionalities provided at the client side by server_  
+  
   
   
   
