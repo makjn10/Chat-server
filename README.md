@@ -7,6 +7,7 @@ In a multi-client chat server, N clients are connected to a server and send mess
 ## SERVER
 
 Server takes incoming connections and ask for a username from every connection.
+
 Every user is provided with four options :
 1: Download file
 2: Upload file
