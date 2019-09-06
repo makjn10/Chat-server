@@ -18,12 +18,17 @@ If we want to see if we can read from standard input and some socket descriptor,
 
 selected which is ready for reading. After ‘select’, it run through the existing connections looking for data to read. If we got one, new connections are handled and the new file descriptor is added to the master set by keeping track of the maximum file descriptor. If there is no need to handle new connection, handle data from a client. If there is any data in the recv_buf, it can be received by using recv().Or , the data is send to all other clients by using the function send().
 
+Some features of select() command
+*Select command allows to monitor multiple file descriptors, waiting until one of the file descriptors become active.
+For example, if there is some data to be read on one of the sockets select will provide that information.
+*Select works like an interrupt handler, which gets activated as soon as any file descriptor sends any data.
+
 The server gives 5 options to its users:
-1: Download file
-2: Upload file
-3: Send message
-4: Disconnect from server
-5: Close the server
+*Download file
+*Upload file
+*Send message
+*Disconnect from server
+*Close the server
 
 _server_log.txt keeps track of all the activities like connecting a new user,uploading file etc._
 
@@ -36,7 +41,7 @@ Every user is provided with five options :
 1: Download file
 2: Upload file
 3: Send message
-4: Disconnect from server
+0 Disconnect from server
 5: Close the server
 
 
@@ -51,7 +56,7 @@ The specifications of options available are:-
 ### 3.Send message
    The user is asked to input message .The message is sent to all the remaining connected clients.
    
-### 4.Disconnect from the server
+### 0:isconnect from the server
    The user is disconnected from the server and the user leaves the chat server
    
 ### 5.Close the server
