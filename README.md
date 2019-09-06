@@ -13,14 +13,14 @@ In a multi-client chat server, N clients are connected to a server and send mess
 ```C
 int select(int numfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
 ```
-If we want to see if we can read from standard input and some socket descriptor, sockfd, just add the file descriptors 0 and sockfd to the set readfds. The parameter numfds should be set to the values of the highest file descriptor plus one. When select() returns, readfds will be modified to reflect which of the file descriptors we
-
-selected which is ready for reading. After ‘select’, it run through the existing connections looking for data to read. If we got one, new connections are handled and the new file descriptor is added to the master set by keeping track of the maximum file descriptor. If there is no need to handle new connection, handle data from a client. If there is any data in the recv_buf, it can be received by using recv().Or , the data is send to all other clients by using the function send().
-
-Some features of select() command
-* Select command allows to monitor multiple file descriptors, waiting until one of the file descriptors become active.
+* Description of select() :
+  * Select command allows to monitor multiple file descriptors, waiting until one of the file descriptors become active.
 For example, if there is some data to be read on one of the sockets select will provide that information.
-* Select works like an interrupt handler, which gets activated as soon as any file descriptor sends any data.
+  * Select works like an interrupt handler, which gets activated as soon as any file descriptor sends any data.
+  * If we want to see if we can read from standard input and some socket descriptor, sockfd, just add the file descriptors 0 and sockfd to the set readfds. The parameter numfds should be set to the values of the highest file descriptor plus one. 
+  * When select() returns, readfds will be modified to reflect which of the file descriptors we selected which is ready for reading. 
+  
+* After ‘select’, it run through the existing connections looking for data to read. If we got one, new connections are handled and the new file descriptor is added to the master set by keeping track of the maximum file descriptor. If there is no need to handle new connection, handle data from a client. 
 
 The server gives 5 options to its users:
 * Download file
