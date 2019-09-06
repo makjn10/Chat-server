@@ -1,4 +1,5 @@
-## Computer Networks lab (CSC15206 : 2019:20) project
-# Chat-server (using socket programming)
+## _Computer Networks lab (CSC15206 : 2019:20) project_
+
+# **Chat-server (using socket programming)**
 
 
