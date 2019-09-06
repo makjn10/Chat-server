@@ -90,7 +90,7 @@ gcc server.c
 ```
 **NOTE:** The server needs to be started first before the clients.
 
-* Now open other terminals and navigate to **"CLIENTS"** directory and compile the **"client.c"** program usinf the command :  
+* Now open other terminals and navigate to **"CLIENTS"** directory and compile the **"client.c"** program using the command :  
 ```C
 gcc client.c
 ```
