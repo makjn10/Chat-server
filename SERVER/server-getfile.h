@@ -3,14 +3,15 @@ void TransferFile(int client_socket , char username[] , char filename[] , FILE *
 	int option = -1; // used as a flag for tranfer
 
 	//TRANSFER START
-	printf("Transferring file : \"%s\" from User : %s ...\n" , filename , username);
+	printf("-> Transferring file : \"%s\" from User : \"%s\" ...\n" , filename , username);
 	recv(client_socket , &option , sizeof(option) , 0);
 	while(option == 1){
 		recv(client_socket , buffer , sizeof(buffer) , 0);
 		fprintf(file , "%s" , buffer);
 		recv(client_socket , &option , sizeof(option) , 0);
 	}
-	printf("Transfer completed successfully\n");
+	printf("-> Transfer completed successfully\n");
+	return;
 	//TRANSFER COMPLETE
 }
 
@@ -24,7 +25,7 @@ void getFile(char filename[] , int client_socket , char username[]){
 
 	//LOG FILE
 	//TIME STRUCTURES to be used
-	FILE * log_file = fopen("server_log.txt" , "a");
+	FILE * log_file;
 	//adding time stamp to log file
 	time_t TIME;
 	struct tm tm;
@@ -33,8 +34,8 @@ void getFile(char filename[] , int client_socket , char username[]){
 	FILE * check_if_present = fopen(filename , "r");
 	if(check_if_present != NULL){
 		//ALREADY A FILE PRESENT WITH SUCH NAME
-		printf("FILE %s ALREADY PRESENT\n" , filename);
-		printf("Awaiting command from the user...\n"); // await command if status == -1
+		printf("-> FILE \"%s\" ALREADY PRESENT\n" , filename);
+		printf("-> Awaiting command from the user...\n"); // await command if status == -1
 
 		//closing check file
 		fclose(check_if_present);
@@ -50,19 +51,20 @@ void getFile(char filename[] , int client_socket , char username[]){
 			// overwrite the file
 			status = 1;
 			ptr = fopen(filename , "w");
-			printf("Overwriting the file : %s ...\n" , filename);
+			printf("-> Overwriting the file : \"%s\" ...\n" , filename);
 
 			//calling transfer
 			TransferFile(client_socket , username , filename , ptr);
 			
 			//time oprations for log file
+			log_file = fopen("server_log.txt" , "a");
 			TIME = time(NULL);
 			tm = *localtime(&TIME);
 
-			printf("Logging operation...\n");
+			printf("-> Logging operation...\n");
 			fprintf(log_file , "%d/%d/%d %d:%d:%d :: ", tm.tm_mday, tm.tm_mon + 1 , tm.tm_year + 1900 , tm.tm_hour , tm.tm_min , tm.tm_sec);
-			fprintf(log_file , "User served : %s\n   Overwrote the file : %s\n" , username , filename);
-			printf("Logged successfully\n");
+			fprintf(log_file , "User served : \"%s\"\n                    Overwrote the file : \"%s\"\n\n" , username , filename);
+			printf("-> Logged successfully\n\n");
 			
 			fclose(ptr);
 			fclose(log_file);
@@ -71,17 +73,18 @@ void getFile(char filename[] , int client_socket , char username[]){
 		}
 		else{
 			//INVALID COMMAND - we choose to abort the transfer
-			printf("Aborting the transfer...\n");
+			printf("-> Aborting the transfer...\n");
 			//time oprations for log file
+			log_file = fopen("server_log.txt" , "a");
 			TIME = time(NULL);
 			tm = *localtime(&TIME);
 
-			printf("Logging operation...\n");
+			printf("-> Logging operation...\n");
 			fprintf(log_file , "%d/%d/%d %d:%d:%d :: ", tm.tm_mday, tm.tm_mon + 1 , tm.tm_year + 1900 , tm.tm_hour , tm.tm_min , tm.tm_sec);
-			fprintf(log_file , "User served : %s\n   Transfer cancelled as a file already present with name %s\n" , username , filename);
-			printf("Logged successfully\n");
+			fprintf(log_file , "User served : \"%s\"\n                    Transfer cancelled as a file already present with name \"%s\"\n\n" , username , filename);
+			printf("-> Logged successfully\n");
 
-			printf("Transfer aborted.\n");
+			printf("-> Transfer aborted.\n\n");
 			fclose(log_file);
 			return;
 		}
@@ -97,14 +100,15 @@ void getFile(char filename[] , int client_socket , char username[]){
 		TransferFile(client_socket , username , filename , ptr);
 			
 		//time oprations for log file
+		log_file = fopen("server_log.txt" , "a");
 		TIME = time(NULL);
 		tm = *localtime(&TIME);
 
-		printf("Logging operation...\n");
+		printf("-> Logging operation...\n");
 		fprintf(log_file , "%d/%d/%d %d:%d:%d :: ", tm.tm_mday, tm.tm_mon + 1 , tm.tm_year + 1900 , tm.tm_hour , tm.tm_min , tm.tm_sec);
-		fprintf(log_file , "User served : %s\n   Uploaded the file : %s\n" , username , filename);
-		printf("Logged successfully\n");
-		
+		fprintf(log_file , "User served : \"%s\"\n                    Uploaded the file : \"%s\"\n\n" , username , filename);
+		printf("-> Logged successfully\n\n");
+		 
 		fclose(ptr);
 		fclose(log_file);
 		return;
