@@ -7,13 +7,12 @@ In a multi-client chat server, N clients are connected to a server and send mess
 ![Client Server Interaction](http://vidyakv.files.wordpress.com/2011/12/cs-120-3-3341.png)
 
 ## SERVER
-In the server program, first is the establishment of connection to a port.Server takes incoming connections and ask for a username from every connection.
-The server stores the username of administrator and a password for authentication.Only an administrator can close the server.
-
-In the case of a server, it wants to listen for incoming connections as well as keep reading from the connections it already have. select() gives the power to monitor several sockets at the same time. It’ll tell you which ones are ready for reading, which are ready for writing, and which sockets have raised exceptions.
-
+* In the server program, first is the establishment of connection to a port.Server takes incoming connections and ask for a username from every connection.
+* Server listens for incoming connections as well as keep reading from the connections it already have. 
+* **select()** function gives the power to monitor several sockets at the same time. It tells which ones are ready for reading, which are ready for writing, and which sockets have raised exceptions.
+```C
 int select(int numfds, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, struct timeval *timeout);
-
+```
 If we want to see if we can read from standard input and some socket descriptor, sockfd, just add the file descriptors 0 and sockfd to the set readfds. The parameter numfds should be set to the values of the highest file descriptor plus one. When select() returns, readfds will be modified to reflect which of the file descriptors we
 
 selected which is ready for reading. After ‘select’, it run through the existing connections looking for data to read. If we got one, new connections are handled and the new file descriptor is added to the master set by keeping track of the maximum file descriptor. If there is no need to handle new connection, handle data from a client. If there is any data in the recv_buf, it can be received by using recv().Or , the data is send to all other clients by using the function send().
