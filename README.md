@@ -33,7 +33,7 @@ Also a client can :
 1. Disconnect from server
 2. Close the server (if the client is the ADMIN CLINET)
 
-![Image showing functionalities provided at the client side by server](file:///home/mayank/Pictures/Screenshot%20from%202019-09-07%2003-26-02.png)
+![Image showing functionalities provided at the client side by server](Images/IMG1.png)
 
 _server_log.txt keeps track of all the activities like connecting a new user,uploading file etc._
 
