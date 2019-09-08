@@ -7,7 +7,7 @@ In a multi-client chat server, N clients are connected to a server and send mess
 ![Client Server Interaction](http://vidyakv.files.wordpress.com/2011/12/cs-120-3-3341.png)
 
 ## SERVER
-### Working :
+### _Working_ :
 * In the server program, first is the establishment of connection to a port(socket creation and binding) using **socket()** and **bind()** functions. 
 * Server listens for incoming connections using **listen()** function as well as keep reading from the connections it already have connected to. Server accepts incoming connections using **accept()** function, sends a welcome message to the client and recieves option(what client wants to actually do) and username from every connection using **send()/recv()** functions respectively.
 * **select()** function gives the power to monitor several sockets at the same time. It tells which ones are ready for reading, which are ready for writing, and which sockets have raised exceptions.
@@ -23,7 +23,7 @@ For example, if there is some data to be read on one of the sockets select will 
   
 * After select(), it run through the existing connections looking for data to read. If we got one, new connections are handled and the new file descriptor is added to the master set by keeping track of the maximum file descriptor. If there is no need to handle new connection, handle data from a client. 
 
-### Functionalities provided :   
+### _Functionalities provided_ :   
 The server provides 3 functionalities to its users :  
 1. Download file from the server - **sendFile()** function in **server-sendfile.h** is called.
 2. Upload file to the server - **getFile()** function in **server-getfile.h** is called.
@@ -36,19 +36,19 @@ Also a client can :
 ![Image showing functionalities provided at the client side by server](Images/IMG1.png)  
   _Image showing functionalities provided at the client side by server_  
 
-### Server Log :  
+### _Server Log_ :  
 * File _"server_log.txt"_ keeps record of all the activities like starting/closing of the server, connecting/disconnecting of clients, downloads/uploads of files by the users and errors occured if any.  
 * File operations are used to log (append) the information to the file after each process.
 
 
 ## CLIENT
-### Working :  
+### _Working_ :  
 * In the client program, first is prompt to enter the username that will be used during communication and creation of the client socket descriptor using **socket()** function.
 * Second is the establishment of connection to the server and running on the localhost. Connection is established by using **connect()** function. 
 * Then **select()** function is used for either reading or writing as in the server program. It sends message to the server from the keyboard input using stdin. If there is data in the recv_buf, it receives data using recv().
 * Now if the socket in readfds is not '0' then it means we have to recieve  message from server and print it to stdout which can be done by calling **send_recv_msg()** function in **client-channel-selector.h** else the client is prompted for options and the option and username is sent to the server and relevant data is recieved from the server by calling **send_recv()** function in **client-channel-selector.h**. The channel selector selects the process as per the option input by the client.
 
-### Functionalities available:  
+### _Functionalities available_ :  
 Every client is provided with 4 + 1* options options :
 1. "1" : Download file from server - **getFile()** function in **client-getfile.h** is called
 2. "2" : Upload file to server - **sendFile()** function in **client-sendFile.h** is called
