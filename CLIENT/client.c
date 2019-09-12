@@ -44,7 +44,7 @@ int main(){
 
 	//telling instructions
 	printf("> INSTRUCTIONS : \nOptions :\n  * (1 : Download file)\n  * (2 : Upload file)\n  * (3 : Send message)\n  * (0 : Disconnnect)\n  * [4 : Close the server **(only for admin)]");
-	printf("\n> Enter the option and then the required fields. \n\n> ");
+	printf("\n> Enter the option and then the required fields. \n\n> Enter option : ");
 	fflush(stdout);
 
 	int fdmax = client_socket;
@@ -63,7 +63,7 @@ int main(){
 				else	send_recv_msg(client_socket , socks); //call client-message
 			}
 		}
-		printf("\n> ");
+		printf("\n> Enter option : ");
 		fflush(stdout);
 	}
 
