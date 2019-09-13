@@ -5,7 +5,7 @@ void send_recv(int client_socket , int sock , char UNAME[]){
 
 	char option[2];//select the option of what to do
 	option[0] = '\0';
-	scanf("Enter option : %s" , option);
+	scanf("%s" , option);
 	while ((getchar()) != '\n'); //clearing buffer
 	//sending option to server
 	send(client_socket , option , sizeof(option) , 0);
